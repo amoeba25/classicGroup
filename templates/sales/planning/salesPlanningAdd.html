@@ -1,0 +1,202 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}
+    Add Sales Planning
+{% endblock title %}
+{% block extra_css %}
+{% endblock %}
+{% block content %}
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0 font-size-18">Add Sales Planning</h4>
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item">
+                                        <a href="javascript: void(0);">Sales</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Planning</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- end page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="" method="POST" id="planningSales"
+                                      data-branches-url="{% url 'fetchData' %}" data-qt-url="{% url 'fetchQt' %}"
+                                      data-reserved-url="{% url 'fetchRe' %}" data-available-url="{% url 'fetchAv' %}">
+                                    {% csrf_token %}
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Select Branch</label>
+                                                {% render_field planning.select_branch class="form-select" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Select Item</label>
+                                                {% render_field planning.item class="form-select" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Quantity</label>
+                                                {% render_field planning.quantity class="form-control" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Reserved Quantity</label>
+                                                {% render_field planning.reserved_qt class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Available Quantity</label>
+                                                {% render_field planning.available_quantity class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Select Customer</label>
+                                                {% render_field planning.customer class="form-select" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Customer Quantity</label>
+                                                {% render_field planning.customer_quantity class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Destination Add.</label>
+                                                {% render_field planning.destination_add class="form-control" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Contact Person</label>
+                                                {% render_field planning.contact_person class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Contact Number</label>
+                                                {% render_field planning.contact_number class="form-control" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Logged In</label>
+                                                {% render_field planning.loggedIn class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Remarks</label>
+                                                {% render_field planning.remarks class="form-control" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <button type="submit" class="btn btn-outline-success">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+        </div>
+        <!-- End Page-content -->
+        {% block footer %} {% include 'partials/footer.html' %} {% endblock footer %}
+    </div>
+    <!-- end main content-->
+
+{% endblock content %} {% block extra_js %}
+    <script>
+        $("#id_select_branch").change(function () {
+            let url = $("#planningSales").attr("data-branches-url");
+            let branchData = $(this).val();
+            $.ajax({
+                url: url,
+                data: {
+                    "branchData": branchData
+                },
+                success: function (data) {
+                    $('#id_item').html(data)
+                }
+            })
+        })
+    </script>
+    <script>
+        $("#id_item").change(function () {
+            let url = $("#planningSales").attr("data-qt-url");
+            let itemData = $(this).val();
+            $.ajax({
+                url: url,
+                data: {
+                    "itemData": itemData
+                },
+                success: function (data) {
+                    $('#id_quantity').val(data)
+                }
+            })
+        })
+    </script>
+    <script>
+        $("#id_item").change(function () {
+            let url = $("#planningSales").attr("data-reserved-url");
+            let reservedQt = $(this).val();
+            $.ajax({
+                url: url,
+                data: {
+                    "reservedQt": reservedQt
+                },
+                success: function (data) {
+                    $('#id_reserved_qt').val(data)
+                }
+            })
+        })
+    </script>
+    <script>
+        $("#id_item").change(function () {
+            let url = $("#planningSales").attr("data-available-url");
+            let availableQt = $(this).val();
+            $.ajax({
+                url: url,
+                data: {
+                    "availableQt": availableQt
+                },
+                success: function (data) {
+                    $('#id_available_quantity').val(data)
+                }
+            })
+        })
+    </script>
+{% endblock %}

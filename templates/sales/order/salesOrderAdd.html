@@ -1,0 +1,181 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}
+    Add Sales Order
+{% endblock title %}
+{% block extra_css %}
+{% endblock %}
+{% block content %}
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0 font-size-18">Add Sales Order</h4>
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item">
+                                        <a href="javascript: void(0);">Sales</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Sales Order</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- end page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="" method="POST">
+                                    {% csrf_token %}
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Sale No.</label>
+                                                {% render_field order.saleNo class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Date</label>
+                                                {% render_field order.date class="form-control" type="Date" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">piRef</label>
+                                                {% render_field order.piRef class="form-select" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Select Customer</label>
+                                            {% render_field order.selectCustomer class="form-select" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Customer GST No.</label>
+                                                {% render_field order.gstNo class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Contact Person</label>
+                                                {% render_field order.contactPerson class="form-control" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Phone Person</label>
+                                                {% render_field order.phonePerson class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Email</label>
+                                                {% render_field order.emailId class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Description</label>
+                                                {% render_field order.descriptions class="form-control" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Loading From</label>
+                                                {% render_field order.loadingFrom class="form-select" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Delivery </label>
+                                                {% render_field order.deliveryAt class="form-control" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Credit Number</label>
+                                                {% render_field order.creditNo class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Payment Terms</label>
+                                                {% render_field order.paymentTerms class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Freight</label>
+                                                {% render_field order.freight class="form-control" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Transport Details</label>
+                                                {% render_field order.transportDetails class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Product</label>
+                                                {% render_field order.product class="form-select" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Quantity</label>
+                                                {% render_field order.quantity class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Price</label>
+                                                {% render_field order.price class="form-control" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <button type="submit" class="btn btn-outline-success">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+        </div>
+        <!-- End Page-content -->
+        {% block footer %} {% include 'partials/footer.html' %} {% endblock footer %}
+    </div>
+    <!-- end main content-->
+
+{% endblock content %} {% block extra_js %}
+
+{% endblock %}

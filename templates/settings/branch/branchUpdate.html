@@ -1,0 +1,127 @@
+{% extends 'partials/base.html' %} {% load widget_tweaks %} {% load static %} 
+{% block title %}Add Branch{% endblock title %} {% block extra_css %} {% endblock %} 
+{% block content %}
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0 font-size-18">Update Branch</h4>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item">
+                                    <a href="javascript: void(0);">Settings</a>
+                                </li>
+                                <li class="breadcrumb-item active">Update Branch</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- end page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="POST" action="">
+                                {% csrf_token %}
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label for="selectRegion" class="form-label">Select Region</label>
+                                            {% render_field updateForm.regionName class="form-select"%}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label for="stateName" class="form-label">State Name</label>
+                                            {% render_field updateForm.stateName class="form-control" %}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label for="branchCode" class="form-label">Branch Code</label>
+                                            {% render_field updateForm.branchCode class="form-control" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label for="cityName" class="form-label">City Name</label>
+                                            {% render_field updateForm.cityName class="form-control"%}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label for="branchName" class="form-label">Branch Name</label>
+                                            {% render_field updateForm.branchName class="form-control"%}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label class="form-label">Branch Address 1</label>
+                                            {% render_field updateForm.branchAddress1 class="form-control" %}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label class="form-label">Branch Address 2</label>
+                                            {% render_field updateForm.branchAddress2 class="form-control" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label class="form-label">Branch Phone No.</label>
+                                            {% render_field updateForm.branchNumber class="form-control" %}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label class="form-label">Zip Code</label>
+                                            {% render_field updateForm.zip_code class="form-control"%}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label class="form-label">Latitude</label>
+                                            {% render_field updateForm.latitude class="form-control" readonly=true %}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label class="form-label">Longitude</label>
+                                            {% render_field updateForm.longitude class="form-control" readonly=true %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <button class="btn btn-outline-success">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+    </div>
+    <!-- End Page-content -->
+    {% block footer %} {% include 'partials/footer.html' %} {% endblock footer %}
+</div>
+<!-- end main content-->
+
+{% endblock content %} {% block extra_js %} {% endblock %}

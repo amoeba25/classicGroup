@@ -1,0 +1,122 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}
+Update Customer
+{% endblock title %}
+{% block extra_css %}
+{% endblock %} {% block content %}
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0 font-size-18">Update Customer</h4>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item">
+                                    <a href="javascript: void(0);">Inventory</a>
+                                </li>
+                                <li class="breadcrumb-item active">Finished</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+            <!-- end page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label for="customer_type" class="form-label">Customer Type</label>
+                                            {% render_field updateForm.customer_type class="form-control" %}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label for="customer_name" class="form-label">Customer Name</label>
+                                            {% render_field updateForm.customer_name class="form-control" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label for="phone" class="form-label">Phone</label>
+                                            {% render_field updateForm.phone class="form-control"%}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label for="billing_address" class="form-label">Billing Address</label>
+                                            {% render_field updateForm.billing_address class="form-control" %}
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label for="shipping_address" class="form-label">Shipping Address</label>
+                                            {% render_field updateForm.shipping_address class="form-control" %}
+                                        </div>
+                                    </div>
+                                     <div class="col">
+                                        <div class="example-content">
+                                            <label for="gst_no" class="form-label">GST</label>
+                                            {% render_field updateForm.gst_no class="form-control" %}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label for="reference" class="form-label">Reference</label>
+                                            {% render_field updateForm.reference class="form-control" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label for="payment_terms" class="form-label">Payment Terms</label>
+                                            {% render_field updateForm.payment_terms class="form-control" %}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label for="delivery_terms" class="form-label">Delivery Terms</label>
+                                            {% render_field updateForm.delivery_terms class="form-control" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <button class="btn btn-outline-success">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+    </div>
+    <!-- End Page-content -->
+    {% block footer %} {% include 'partials/footer.html' %} {% endblock footer %}
+</div>
+<!-- end main content-->
+
+{% endblock content %} {% block extra_js %}
+
+{% endblock %}

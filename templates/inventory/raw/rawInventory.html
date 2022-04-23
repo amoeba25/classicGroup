@@ -1,0 +1,126 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}
+Raw Inventory
+{% endblock title %}
+{% block extra_css %}
+<link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet"
+    type="text/css" />
+<link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet"
+    type="text/css" />
+<link href="{% static 'libs/sweetalert2/dist/sweetalert2.min.css' %}" rel="stylesheet" type="text/css" />
+
+{% endblock %} {% block content %}
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0 font-size-18">Raw Inventory</h4>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item">
+                                    <a href="javascript: void(0);">Inventory</a>
+                                </li>
+                                <li class="breadcrumb-item active">Raw</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="text-sm-end">
+                        <a href="{% url 'rawInventoryAdd' %}">
+                            <button type="button"
+                                class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2">
+                                <i class="mdi mdi-plus me-1"></i> Add Inventory
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- end page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <table id="datatable" class="table table-bordered dt-responsive nowrap w-100">
+                                <thead>
+                                    <tr>
+                                        <th>Branch</th>
+                                        <th>Product Name</th>
+                                        <th>Quantity</th>
+                                        <th>Reserved Quantity</th>
+                                        <th>Max. Quantity</th>
+                                        <th>Available Quantity</th>
+                                        <th>Description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for raw in rawInvent %}
+                                    <tr>
+                                        <td>{{ raw.select_branch }}</td>
+                                        <td>{{ raw.product_name }}</td>
+                                        <td>{{ raw.quantity}}</td>
+                                        <td>{{ raw.reserved_qt}}</td>
+                                        <td>{{ raw.max_quantity}}</td>
+                                        <td><span class="badge bg-info">{{ raw.available_quantity}} </span></td>
+                                        <td>{{ raw.description }}</td>
+                                        <td>
+                                            <div class="d-flex gap-3">
+                                                <a href="{% url 'rawInventoryUpdate' raw.id %}"
+                                                    class="text-success"><i class="mdi mdi-pencil font-size-18"></i></a>
+                                                <a href="{% url 'rawInventoryDelete' raw.id %}"
+                                                    class="text-danger"><i class="mdi mdi-delete font-size-18"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+    </div>
+    <!-- End Page-content -->
+    {% block footer %} {% include 'partials/footer.html' %} {% endblock footer %}
+</div>
+<!-- end main content-->
+
+{% endblock content %} {% block extra_js %}
+<script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'js/pages/datatables.init.js' %}"></script>
+<!-- Sweet Alerts js -->
+<script src="{% static 'libs/sweetalert2/dist/sweetalert2.min.js' %}"></script>
+<!-- Sweet alert init js-->
+<script>
+    {% if messages %}
+    {% for msg in messages %}
+    Swal.fire({
+        position: 'top-end',
+        title: '{{ msg }}',
+        icon: '{{ msg.tags }}',
+        timer: '2000',
+        timerProgressBar: true,
+        showConfirmButton: false
+    })
+    {% endfor %}
+    {% endif %}
+</script>
+{% endblock %}

@@ -1,0 +1,110 @@
+{% extends 'partials/base.html' %} {% load static %} {% load widget_tweaks %}
+{%block title %} Roles {% endblock title %} {% block extra_css %}
+<link
+  href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="{% static 'libs/sweetalert2/dist/sweetalert2.min.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+
+{% endblock %} {% block content %}
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+  <div class="page-content">
+    <div class="container-fluid">
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div
+            class="page-title-box d-sm-flex align-items-center justify-content-between"
+          >
+            <h4 class="mb-sm-0 font-size-18">Roles</h4>
+            <div class="page-title-right">
+              <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item">
+                  <a href="javascript: void(0);">Staff</a>
+                </li>
+                <li class="breadcrumb-item active">Roles Onboard</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- end page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <form method="POST" action="{% url 'rolesAdd' %}">
+                {% csrf_token %}
+                <div class="row mt-4">
+                  <div class="col">
+                    <div class="example-content">
+                      <label class="form-label">Role Name</label>
+                      {% render_field role_form.name class="form-control" %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col">
+                    <div class="example-content">
+                      <label class="form-label">Permission List</label>
+                      {% render_field role_form.permissions class="form-control" style="height:30vh" %}
+                      <br />
+                      <span>Hold down “Control” on a Win, or “Command” on a Mac, to select more than one permission.</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <button class="btn btn-outline-success">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- end col -->
+      </div>
+      <!-- end row -->
+    </div>
+  </div>
+  <!-- End Page-content -->
+  {% block footer %} {% include 'partials/footer.html' %} {% endblock footer %}
+</div>
+<!-- end main content-->
+
+{% endblock content %} {% block extra_js %}
+<script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'js/pages/datatables.init.js' %}"></script>
+<!-- Sweet Alerts js -->
+<script src="{% static 'libs/sweetalert2/dist/sweetalert2.min.js' %}"></script>
+<!-- Sweet alert init js-->
+<script>
+  {% if messages %}
+  {% for msg in messages %}
+  Swal.fire({
+      position: 'top-end',
+      title: '{{ msg }}',
+      icon: '{{ msg.tags }}',
+      timer: '2000',
+      timerProgressBar: true,
+      showConfirmButton: false
+  })
+  {% endfor %}
+  {% endif %}
+</script>
+{% endblock %}

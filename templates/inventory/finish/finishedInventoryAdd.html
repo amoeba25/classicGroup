@@ -1,0 +1,106 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}
+Add Finished Inventory
+{% endblock title %}
+{% block extra_css %}
+{% endblock %} 
+{% block content %}
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0 font-size-18">Add Finished Inventory</h4>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item">
+                                    <a href="javascript: void(0);">Inventory</a>
+                                </li>
+                                <li class="breadcrumb-item active">Finished</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="POST" action="{% url 'finishedInventoryAdd' %}">
+                                {% csrf_token %}
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label class="form-label">Select Branch</label>
+                                            {% render_field finishedAddForm.select_branch class="form-select" %}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label class="form-label">Product Name</label>
+                                            {% render_field finishedAddForm.product_name class="form-control" %}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label class="form-label">Unique Name</label>
+                                            {% render_field finishedAddForm.slug class="form-control" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label class="form-label">Quantity</label>
+                                            {% render_field finishedAddForm.quantity class="form-control" %}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label class="form-label">Reserved Quantity</label>
+                                            {% render_field finishedAddForm.reserved_qt class="form-control" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label class="form-label">Maximum Quantity</label>
+                                            {% render_field finishedAddForm.max_quantity class="form-control" %}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="example-content">
+                                            <label class="form-label">Description</label>
+                                            {% render_field finishedAddForm.description class="form-control" %}
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="row mt-4">
+                                    <button class="btn btn-outline-success">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+    </div>
+    <!-- End Page-content -->
+    {% block footer %} {% include 'partials/footer.html' %} {% endblock footer %}
+</div>
+<!-- end main content-->
+
+{% endblock content %} {% block extra_js %}
+{% endblock %}

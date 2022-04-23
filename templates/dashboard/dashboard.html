@@ -1,0 +1,139 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock title %}
+
+
+{% block extra_css %}
+<!-- plugin css -->
+<link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet"
+      type="text/css"/>
+{% endblock extra_css %}
+
+{% block content %}
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0 font-size-18">Dashboard</h4>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Dashboard</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-xl-3 col-md-6">
+                    <!-- card -->
+                    <div class="card card-h-100">
+                        <!-- card body -->
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Branch</span>
+                                    <h4 class="mb-3">
+                                        <span class="counter-value" data-target="10">0</span>
+                                    </h4>
+                                </div>
+                                <div class="flex-shrink-0 text-end dash-widget">
+                                    <div id="mini-chart1" data-colors='["red", "green"]'
+                                         class="apex-charts"></div>
+                                </div>
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+
+                <div class="col-xl-3 col-md-6">
+                    <!-- card -->
+                    <div class="card card-h-100">
+                        <!-- card body -->
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <span class="text-muted mb-3 lh-1 d-block text-truncate">Total NVR</span>
+                                    <h4 class="mb-3">
+                                        <span class="counter-value" data-target="5">0</span>
+                                    </h4>
+                                </div>
+                                <div class="flex-shrink-0 text-end dash-widget">
+                                    <div id="mini-chart2" data-colors='["red", "green"]'
+                                         class="apex-charts"></div>
+                                </div>
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+
+                <div class="col-xl-3 col-md-6">
+                    <!-- card -->
+                    <div class="card card-h-100">
+                        <!-- card body -->
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <span class="text-muted mb-3 lh-1 d-block text-truncate">Total CCTV</span>
+                                    <h4 class="mb-3">
+                                        <span class="counter-value" data-target="15">0</span>
+                                    </h4>
+                                </div>
+                                <div class="flex-shrink-0 text-end dash-widget">
+                                    <div id="mini-chart3" data-colors='["red", "green"]'
+                                         class="apex-charts"></div>
+                                </div>
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+
+                <div class="col-xl-3 col-md-6">
+                    <!-- card -->
+                    <div class="card card-h-100">
+                        <!-- card body -->
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Panel</span>
+                                    <h4 class="mb-3">
+                                        <span class="counter-value" data-target="3">0</span>
+                                    </h4>
+                                </div>
+                                <div class="flex-shrink-0 text-end dash-widget">
+                                    <div id="mini-chart4" data-colors='["red", "green"]'
+                                         class="apex-charts"></div>
+                                </div>
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+            </div><!-- end row-->
+
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+    {% block footer %}
+    {% include 'partials/footer.html' %}
+    {% endblock footer %}
+</div>
+{% endblock content %}
+
+{% block extra_js %}
+<!-- apexcharts -->
+<script src="{% static 'libs/apexcharts/dist/apexcharts.min.js' %}"></script>
+
+<!-- Plugins js-->
+<script src="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js' %}"></script>
+<script src="{% static 'libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js' %}"></script>
+<!-- dashboard init -->
+<script src="{% static 'js/pages/dashboard.init.js' %}"></script>
+{% endblock extra_js %}

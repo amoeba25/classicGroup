@@ -1,0 +1,153 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}
+    Update Performa Invoice
+{% endblock title %}
+{% block extra_css %}
+{% endblock %}
+{% block content %}
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0 font-size-18">Update Performa Invoice</h4>
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item">
+                                        <a href="javascript: void(0);">Sales</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Performa Invoice</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- end page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Performa Invoice No.</label>
+                                                {% render_field updateForm.piNo class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Date</label>
+                                                {% render_field updateForm.date class="form-control" type="Date" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Select Customer</label>
+                                                {% render_field updateForm.selectCustomer class="form-select" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Customer GST No.</label>
+                                                {% render_field updateForm.gstNo class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Contact Person</label>
+                                                {% render_field updateForm.contactPerson class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Phone No.</label>
+                                                {% render_field updateForm.phonePerson class="form-control" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Delivery Address</label>
+                                                {% render_field updateForm.deliveryAdd class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Email ID</label>
+                                                {% render_field updateForm.emailId class="form-control" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Descriptions</label>
+                                                {% render_field updateForm.descriptions class="form-control" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {# Formset Starts Here#}
+                                    <div class="row mt-4">
+                                        <div class="table-responsive">
+                                            <table class="table table-dark mb-0">
+                                                <thead>
+                                                <tr>
+                                                    <th>Select Plant/Port</th>
+                                                    <th>Select Product</th>
+                                                    <th>Quantity</th>
+                                                    <th>Price</th>
+                                                    {% comment %} <th>Option</th> {% endcomment %}
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{% render_field updateForm.select_branch class="form-select" %} </td>
+                                                        <td>{% render_field updateForm.product class="form-select" %} </td>
+                                                        <td>{% render_field updateForm.quantity class="form-control" %}</td>
+                                                        <td> {% render_field updateForm.price class="form-control" %}</td>
+                                                        {% comment %} <td>
+                                                            <div class="input-group-append">
+                                                                <button class="button is-small btn btn-success add-form-row">
+                                                                    +
+                                                                </button>&nbsp;
+                                                                <!-- <button class="button is-small btn btn-warning remove-form-row">-</button> -->
+                                                            </div>
+                                                        </td> {% endcomment %}
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <button type="submit" class="btn btn-outline-success">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+        </div>
+        <!-- End Page-content -->
+        {% block footer %} {% include 'partials/footer.html' %} {% endblock footer %}
+    </div>
+    <!-- end main content-->
+
+{% endblock content %} {% block extra_js %}
+
+{% endblock %}

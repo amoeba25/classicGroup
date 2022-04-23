@@ -1,0 +1,79 @@
+{% extends 'partials/base.html' %} {% load static %} {% load widget_tweaks %}
+{%block title %} Roles {% endblock title %} 
+{% block extra_css %}
+{% endblock %} {% block content %}
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+  <div class="page-content">
+    <div class="container-fluid">
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div
+            class="page-title-box d-sm-flex align-items-center justify-content-between"
+          >
+            <h4 class="mb-sm-0 font-size-18">Roles</h4>
+            <div class="page-title-right">
+              <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item">
+                  <a href="javascript: void(0);">Staff</a>
+                </li>
+                <li class="breadcrumb-item active">Roles Onboard</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- end page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <form method="POST" action="">
+                {% csrf_token %}
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="example-content">
+                        <label for="branch" class="form-label">Role</label>
+                        {% render_field role_form.name class="form-control" %}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-4">
+                    <div class="col">
+                      <div class="example-content">
+                        <label for="slugName" class="form-label">Permissions</label>
+                        {% render_field role_form.permissions class="form-control" style="height:30vh"%}
+                        <br />
+                        <span
+                          >Hold down “Control” on a Win, or “Command” on a Mac,
+                          to select more than one permission.</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mt-4">
+                    <button class="btn btn-outline-success">Update</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- end col -->
+      </div>
+      <!-- end row -->
+    </div>
+  </div>
+  <!-- End Page-content -->
+  {% block footer %} {% include 'partials/footer.html' %} {% endblock footer %}
+</div>
+<!-- end main content-->
+
+{% endblock content %} {% block extra_js %}
+{% endblock %}

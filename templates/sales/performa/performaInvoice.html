@@ -1,0 +1,125 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}
+ Performa Invoice
+{% endblock title %}
+{% block extra_css %}
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet"
+          type="text/css"/>
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet"
+          type="text/css"/>
+    <link href="{% static 'libs/sweetalert2/dist/sweetalert2.min.css' %}" rel="stylesheet" type="text/css"/>
+
+{% endblock %} {% block content %}
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0 font-size-18">Performa Invoice</h4>
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item">
+                                        <a href="javascript: void(0);">Sales</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Performa Invoice</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="text-sm-end">
+                            <a href="{% url 'performaInvoiceAdd' %}">
+                                <button type="button"
+                                        class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2">
+                                    <i class="mdi mdi-plus me-1"></i> Add Performa In.
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- end page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="datatable" class="table table-bordered dt-responsive nowrap w-100">
+                                    <thead>
+                                    <tr>
+                                        <th>PI No.</th>
+                                        <th>Customer</th>
+                                        <th>GST No.</th>
+                                        <th>Contact Person</th>
+                                        <th>Delivery Add</th>
+                                        <th>Get Data</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for pi in piData %}
+                                        <tr>
+                                            <td>{{ pi.piNo}}</td>
+                                            <td>{{ pi.selectCustomer }}</td>
+                                            <td>{{ pi.gstNo }}</td>
+                                            <td>{{ pi.contactPerson }}</td>
+                                            <td>{{ pi.deliveryAdd }}</td>
+                                            <td><button class="btn btn-outline-warning">Generate PDF</button></td>
+                                            <td>
+                                                <div class="d-flex gap-3">
+                                                    <a href="{% url 'performaInvoiceUpdate' pi.id %}"
+                                                       class="text-success"><i class="mdi mdi-pencil font-size-18"></i></a>
+                                                    <a href="{% url 'performaInvoiceDelete' pi.id %}"
+                                                       class="text-danger"><i
+                                                            class="mdi mdi-delete font-size-18"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+        </div>
+        <!-- End Page-content -->
+        {% block footer %} {% include 'partials/footer.html' %} {% endblock footer %}
+    </div>
+    <!-- end main content-->
+
+{% endblock content %} {% block extra_js %}
+    <script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'js/pages/datatables.init.js' %}"></script>
+    <!-- Sweet Alerts js -->
+    <script src="{% static 'libs/sweetalert2/dist/sweetalert2.min.js' %}"></script>
+    <!-- Sweet alert init js-->
+    <script>
+        {% if messages %}
+            {% for msg in messages %}
+                Swal.fire({
+                    position: 'top-end',
+                    title: '{{ msg }}',
+                    icon: '{{ msg.tags }}',
+                    timer: '2000',
+                    timerProgressBar: true,
+                    showConfirmButton: false
+                })
+            {% endfor %}
+        {% endif %}
+    </script>
+{% endblock %}
