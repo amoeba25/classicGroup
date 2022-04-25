@@ -72,7 +72,11 @@
                                             <td>{{ plan.available_quantity }}</td>
                                             <td>{{ plan.customer }}</td>
                                             <td>{{ plan.customer_quantity }}</td>
-                                            <td><button class="btn btn-outline-warning">Generate PDF</button></td>
+                                            <td>
+                                                <button class="btn btn-outline-warning">
+                                                    <a href = "{% url 'salesPlanningPDF' plan.id%}" style="color: white"> Generate PDF </a>
+                                                </button>
+                                            </td>
                                             <td>
                                                 <div class="d-flex gap-3">
                                                     <a href="{% url 'salesPlanningUpdate' plan.id %}"

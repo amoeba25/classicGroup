@@ -74,7 +74,11 @@ Sales Order
                                             <td>{{ order.product }}</td>
                                             <td>{{ order.quantity }}</td>
                                             <td>{{ order.price }}</td>
-                                            <td><button class="btn btn-outline-warning">Generate PDF</button></td>
+                                            <td>
+                                                <button class="btn btn-outline-warning">
+                                                    <a href = "{% url 'salesOrderPDF' order.id%}" style="color: white" target="_blank"> Generate PDF </a>
+                                                </button>
+                                            </td>
                                             <td>
                                                 <div class="d-flex gap-3">
                                                     <a href="{% url 'salesOrderUpdate' order.id %}"

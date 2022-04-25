@@ -1,0 +1,135 @@
+<html> 
+<head>
+    <style>
+        @page {
+            size: a4 portrait;
+            @frame header_frame {           /* Static Frame */
+                -pdf-frame-content: header_content;
+                left: 50pt; width: 512pt; top: 50pt; height: 40pt;
+            }
+            @frame content_frame {          /* Content Frame */
+                left: 50pt; width: 512pt; top: 90pt; height: 632pt;
+            }
+            @frame footer_frame {           /* Another static Frame */
+                -pdf-frame-content: footer_content;
+                left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+            }
+        }
+
+        #header_content {
+            font-size: 3em;
+            text-align: center;
+        }
+
+        table tr td{
+            font-size: 1.6em;
+        }
+        #details tr td {
+            border: 1px solid #000;
+            vertical-align: bottom;
+            padding-top: 5px;
+            padding-left: 3px;
+        }
+    </style>
+    </head>
+    
+    <body>
+        <!-- Content for Static Frame 'header_frame' -->
+        <div id="header_content">
+            <h3>PERFORMA INVOICE</h3>
+        </div>
+        <br>
+    
+        <!-- Content for Static Frame 'footer_frame' -->
+        <div id="footer_content">(c) - page <pdf:pagenumber>
+            of <pdf:pagecount>
+        </div>
+    
+        <!-- HTML Content -->
+        <table id='invoice'>
+            <tr>
+                <td> <b> Pi No:  </b> {{piNo}} </td>
+                <td> <b> Date: </b> {{date}} </td>
+            </tr>
+            <tr>
+                <td><b>Pi Reference No: </b>  </td>
+            </tr>
+            <tr>  <td> {{piNo}}</td> </tr>
+            <tr>
+                <td> <b> Company Plant Name/Address : </b> </td>
+                <td> <b> Customer Plant Name/Address : </b> </td>
+            </tr>
+
+            <tr>
+                <td>Andheri</td> 
+            </tr>
+            <tr></tr>
+
+            <tr>
+                <td> <b> GST NO: </b></td>
+                <td> <b> Contact Person and No: </b> {{contactPerson}} </td>
+            </tr>
+
+            <tr> <td> {{gstNo}} </td> </tr>
+
+            <tr>
+                <td> <b> Tel: </b> 0172 5061530</td>
+                <td> <b> Pin Code : </b> 0172 5061530</td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td><b>GST NO: </b></td>
+            </tr>
+
+          
+        </table>
+        <br>
+        <br>
+        <br>
+
+        <table id='details'>
+            <tr> 
+                <td><b>GST NO: </b> </td> 
+                <td> {{gstNo}} </td> 
+            </tr>
+            <tr> 
+                <td><b>Quantity: </b> </td> 
+                <td> {{quantity}} </td> 
+            </tr>
+            <tr> 
+                <td><b>Product: </b> </td> 
+                <td> {{product}} </td> 
+            </tr>
+            <tr> 
+                <td><b>Price: </b> </td> 
+                <td> {{price}} </td> 
+            </tr>
+            <tr> 
+                <td><b>Loading From: </b> </td> 
+                <td>  </td> 
+            </tr>
+            <tr> 
+                <td><b> Delivery At : </b> </td> 
+                <td> {{deliveryAdd}} </td> 
+            </tr>
+            <tr> 
+                <td><b>Transport Details: </b> </td> 
+                <td>  </td> 
+            </tr>
+            <tr> 
+                <td><b>Contact Person and No: </b> </td> 
+                <td>  {{contactPerson}} </td> 
+            </tr>
+            <tr> 
+                <td><b>Email Id: </b> </td> 
+                <td>  {{emailId}} </td> 
+            </tr>
+            <tr> 
+                <td><b>Other Terms: </b> </td> 
+                <td>   </td> 
+            </tr>
+
+        </table>
+    
+    </body>
+</html>

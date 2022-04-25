@@ -72,7 +72,11 @@
                                             <td>{{ pi.gstNo }}</td>
                                             <td>{{ pi.contactPerson }}</td>
                                             <td>{{ pi.deliveryAdd }}</td>
-                                            <td><button class="btn btn-outline-warning">Generate PDF</button></td>
+                                            <td>
+                                                <button class="btn btn-outline-warning">
+                                                    <a href = "{% url 'performaInvoicePDF' pi.id%}" style="color: white" target="_blank"> Generate PDF </a>
+                                                </button>
+                                            </td>
                                             <td>
                                                 <div class="d-flex gap-3">
                                                     <a href="{% url 'performaInvoiceUpdate' pi.id %}"
