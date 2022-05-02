@@ -1,0 +1,124 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}
+    Add Production
+{% endblock title %}
+{% block extra_css %}
+{% endblock %}
+{% block content %}
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0 font-size-18">Add Production</h4>
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item">
+                                        <a href="javascript: void(0);">Production</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Production</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- end page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="" method="POST">
+                                    {% csrf_token %}
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <h3>Form 1</h3>
+                                            <div class="example-content">
+                                                <label class="form-label">Machine</label>
+                                                {% render_field plantForm.machine class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">date</label>
+                                                {% render_field plantForm.date class="form-control" type="date" %}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">Grade</label>
+                                                {% render_field plantForm.grade class="form-control" %}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-4">
+                                        <h3>Form 2</h3>
+                                        {{batchForm}}
+                                        {% comment %} <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">batch_no</label>
+                                                {% render_field batchForm.batch_no class="form-control"%}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">start_time</label>
+                                                {% render_field batchForm.start_time class="form-control"%}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">end_time</label>
+                                                {% render_field batchForm.end_time class="form-control"%}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">drum fill</label>
+                                                {% render_field batchForm.drum_fill class="form-control"%}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">batch_hours</label>
+                                                {% render_field batchForm.batch_hours class="form-control"%}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="example-content">
+                                                <label class="form-label">total_time</label>
+                                                {% render_field batchForm.total_time class="form-control"%}
+                                            </div>
+                                        </div>
+                                    </div> {% endcomment %}
+                                    <div class="row mt-4">
+                                        <button type="submit" class="btn btn-outline-success">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+        </div>
+        <!-- End Page-content -->
+        {% block footer %} {% include 'partials/footer.html' %} {% endblock footer %}
+    </div>
+    <!-- end main content-->
+
+{% endblock content %} {% block extra_js %}
+
+{% endblock %}

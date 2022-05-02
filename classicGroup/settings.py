@@ -51,7 +51,7 @@ MY_APPS = [
     'inventory.apps.InventoryConfig',
     'staff.apps.StaffConfig',
     'customer.apps.CustomerConfig',
-    'sales.apps.SalesConfig'
+    'sales.apps.SalesConfig',
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + MY_APPS + THIRD_PARTY_APPS
