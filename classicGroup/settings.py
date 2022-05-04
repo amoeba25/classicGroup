@@ -52,6 +52,8 @@ MY_APPS = [
     'staff.apps.StaffConfig',
     'customer.apps.CustomerConfig',
     'sales.apps.SalesConfig',
+    'attendance.apps.AttendanceConfig',
+    'crispy_forms'
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + MY_APPS + THIRD_PARTY_APPS
