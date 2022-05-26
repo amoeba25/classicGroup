@@ -53,6 +53,7 @@ MY_APPS = [
     'customer.apps.CustomerConfig',
     'sales.apps.SalesConfig',
     'attendance.apps.AttendanceConfig',
+    'leave.apps.LeaveConfig',
     'crispy_forms'
 ]
 
