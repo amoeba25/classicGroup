@@ -1,0 +1,125 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}
+    Attendance
+{% endblock title %}
+{% block extra_css %}
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet"
+          type="text/css"/>
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet"
+          type="text/css"/>
+    <link href="{% static 'libs/sweetalert2/dist/sweetalert2.min.css' %}" rel="stylesheet" type="text/css"/>
+
+{% endblock %} {% block content %}
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0 font-size-18">Attendance
+                        </h4>
+                        
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item">
+                                    <a href="javascript: void(0);">Attendance</a>
+                                </li>
+                                <li class="breadcrumb-item active">View</li>
+                            </ol>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <!-- end page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="datatable" class="table table-bordered dt-responsive nowrap w-100">
+                                    <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Date</th>
+                                        <th>In time</th>
+                                        <th>Out time</th>
+                                        <th>Total </th>
+                                        <th>Auto</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ user_attendance.user }}</td>
+                                            <td>{{ user_attendance.date }}</td>
+                                            <td>
+                                                {% if user_attendance.time_in == None %}
+                                                    <button class="btn btn-success">
+                                                        <a href = "{% url 'attendanceIn' user_attendance.id%}" style="color: white" > Punch In </a>
+                                                    </button>
+                                                {% else %}
+                                                    {{ user_attendance.time_in }}
+                                                {% endif %}
+                                            </td>
+                                            
+                                            <td>
+                                                {% if user_attendance.time_in is not None %}
+                                                    {% if user_attendance.time_out == None %}
+                                                    <button class="btn btn-danger">
+                                                        <a href = "{% url 'attendanceOut' user_attendance.id%}" style="color: white"> Punch Out </a>
+                                                    </button>
+                                                    {% else %}
+                                                        {{ user_attendance.time_out }}
+                                                    {% endif %}
+                                                {% endif %}
+                                                
+                                            </td>
+                                            <td> {{ total  }} </td>
+                                            <td> {{ auto  }} </td>
+                                            
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+        </div>
+        <!-- End Page-content -->
+        {% block footer %} {% include 'partials/footer.html' %} {% endblock footer %}
+    </div>
+    <!-- end main content-->
+
+{% endblock content %} {% block extra_js %}
+    <script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'js/pages/datatables.init.js' %}"></script>
+    <!-- Sweet Alerts js -->
+    <script src="{% static 'libs/sweetalert2/dist/sweetalert2.min.js' %}"></script>
+    <!-- Sweet alert init js-->
+    <script>
+        {% if messages %}
+            {% for msg in messages %}
+                Swal.fire({
+                    position: 'top-end',
+                    title: '{{ msg }}',
+                    icon: '{{ msg.tags }}',
+                    timer: '2000',
+                    timerProgressBar: true,
+                    showConfirmButton: false
+                })
+            {% endfor %}
+        {% endif %}
+    </script>
+{% endblock %}
