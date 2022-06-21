@@ -24,6 +24,7 @@ def home(request):
     # if normal user - get the user
     user_attendance = Attendance.objects.filter(date = current_day, user = request.user).first()
     
+    
     #if no record exists for the day
     if user_attendance == None:
         attendance1 = Attendance(date = current_day, user = request.user)
@@ -34,8 +35,11 @@ def home(request):
         
         # getting the total hours
         difference = datetime.combine(date.today(), user_attendance.time_out) - datetime.combine(date.today(), user_attendance.time_in)
+        
+        # save the duration to the database
+        user_attendance.duration = difference
+        user_attendance.save()
         context['total'] = f"{difference.seconds//3600} : {(difference.seconds//60)%60}"
-        print(type(context['total']))
     
     # if time_out is none
     else: 
@@ -47,7 +51,6 @@ def home(request):
             context['auto'] = "Auto timeout" 
     
     context ["user_attendance"] = user_attendance
-    print(context)
     return render(request, "attendance/home.html", context= context)
 
 @csrf_exempt

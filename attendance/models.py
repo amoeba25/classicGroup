@@ -12,6 +12,7 @@ class Attendance(models.Model):
     date = models.DateField(null= True, blank= True)
     time_in = models.TimeField(null= True, blank=True)
     time_out = models.TimeField(null= True, blank= True)
+    duration = models.DurationField(null=True, blank= True)
     
     def __str__(self):
         return f"Attendance {self.user}"
